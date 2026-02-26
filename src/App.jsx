@@ -3,11 +3,12 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import PokeList from './components/PokeList'
 import axios from "axios";
-import PokeFilter from './components/PokeFilter';
+
 
 
 function App() {
 
+  const [search, setSearch] = useState("");
   const [pokemons, setPokemons] = useState([])
   const [types, setTypes] = useState([])
 
@@ -50,8 +51,7 @@ function App() {
 
   return (
    <div className=''>
-    {/* <PokeFilter /> */}
-    <PokeList pokemons={pokemons} types={types}/>
+    <PokeList pokemons={pokemons} types={types} search={search} setSearch={setSearch} />
    </div>
   )
 }
