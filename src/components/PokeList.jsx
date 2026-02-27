@@ -1,9 +1,16 @@
 import "../css/type.css"
+import { useNavigate } from "react-router-dom";
 
 function PokeList(props) {
     console.log(props)
 
+     const navigate = useNavigate();
 
+    function onSeeDetailsClick(pokemon) {
+      const query = new URLSearchParams();
+      query.set('id', pokemon.data.id);
+      navigate(`/pokemon?${query.toString()}`);
+    }
 
     const filteredPokemons = props.pokemons.filter((pokemon) =>
       pokemon.data.name.toLowerCase().includes(props.search.toLowerCase())
@@ -27,7 +34,7 @@ function PokeList(props) {
 
         {props.search === "" ? null : filteredPokemons.length > 0 ? (
           filteredPokemons.map((pokemon, index) => (
-            <div className={`bg-gray-200 h-50 w-50 p-3 flex flex-col items-center justify-center rounded-3xl shadow-lg ${pokemon.data.types[0].type.name}`} key={index}>
+            <div onClick={() =>onSeeDetailsClick(pokemon)} className={`bg-gray-200 h-50 w-50 p-3 flex flex-col items-center justify-center rounded-3xl shadow-lg ${pokemon.data.types[0].type.name}`} key={index}>
               <h2 className="text-center uppercase">{pokemon.data.name}</h2>
               <span className="text-sm text-gray-500">#{pokemon.data.id}</span>
               <img className="" src={pokemon.data.sprites.front_default} alt="" />
@@ -38,7 +45,7 @@ function PokeList(props) {
         {props.search < 1 && props.pokemons && props.pokemons.map((pokemon, index) => (
           // console.log(pokemon.data.types[0].type.name),
           
-          <div className={`bg-gray-200 h-50 w-50 p-3 flex flex-col items-center justify-center rounded-3xl shadow-lg ${pokemon.data.types[0].type.name}`} key={index}>
+          <div onClick={() => onSeeDetailsClick(pokemon)} className={`bg-gray-200 h-50 w-50 p-3 flex flex-col items-center justify-center rounded-3xl shadow-lg ${pokemon.data.types[0].type.name}`} key={index}>
               <h2 className="text-center uppercase">{pokemon.data.name}</h2>
               <span className="text-sm text-gray-500">#{pokemon.data.id}</span>
               <img className="" src={pokemon.data.sprites.front_default} alt="" />
