@@ -1,0 +1,241 @@
+/* .grass {
+    background-color: rgba(40, 145, 80, 0.774)
+}
+
+.water {
+    background-color: rgb(45, 196, 196)
+}
+
+.fire {
+    background-color: rgb(235, 75, 11)
+}
+.normal {
+    background-color: rgb(170, 170, 170)
+}
+.flying {
+    background-color: rgb(170, 170, 170)
+}
+.electric {
+    background-color: rgb(255, 255, 0)
+}
+.ice {
+    background-color: rgb(0, 255, 255)
+}
+.fighting {
+    background-color: rgb(255, 0, 0)
+}
+.poison {
+    background-color: rgb(128, 0, 128)
+}
+.ground {
+    background-color: rgb(210, 180, 140)
+}
+.rock {
+    background-color: rgb(128, 128, 128)
+}
+.bug {
+    background-color: rgb(255, 255, 0)
+}
+.ghost {
+    background-color: rgb(128, 0, 128)
+}
+.steel {
+    background-color: rgb(192, 192, 192)
+}
+.fairy {
+    background-color: rgb(255, 192, 203)
+}
+.psychic {
+    background-color: rgb(255, 0, 255)
+}
+.dragon {
+    background-color: rgba(0, 0, 255, 0.603)
+} */
+
+
+.icongrass {
+    background-color: rgb(66, 214, 7);;
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;   
+    margin-bottom: 2px;
+} 
+.iconwater {
+    background-color: rgb(45, 196, 196);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 2px;
+
+}
+.iconfire {
+    background-color: rgb(235, 75, 11);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;   
+    margin-bottom: 2px;
+
+}
+.iconnormal {
+    background-color: rgb(170, 170, 170);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;   
+    margin-bottom: 2px;
+
+}
+.iconflying {
+    background-color: rgb(168, 188, 196);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;   
+    margin-bottom: 2px;
+
+}
+.iconelectric {
+    background-color: rgba(223, 223, 32, 0.911);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;   
+    margin-bottom: 2px;
+
+}
+.iconice {
+    background-color: rgba(0, 255, 255, 0.658);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;   
+    margin-bottom: 2px;
+
+}
+.iconfighting {
+    background-color: rgb(148, 0, 0);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;   
+    margin-bottom: 2px;
+
+}
+.iconpoison {
+    background-color: rgb(128, 0, 128);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;   
+    margin-bottom: 2px;
+
+}
+.iconground {
+    background-color: rgb(210, 180, 140);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;   
+    margin-bottom: 2px;
+
+}
+.iconrock {
+    background-color: rgb(128, 128, 128);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;   
+    margin-bottom: 2px;
+
+}
+.iconbug {
+    background-color: rgb(201, 201, 15);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;   
+    margin-bottom: 2px;
+
+}
+.iconghost {
+    background-color: rgba(128, 0, 128, 0.568);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;   
+    margin-bottom: 2px;
+
+}
+.iconsteel {
+    background-color: rgb(192, 192, 192);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;   
+    margin-bottom: 2px;
+
+}
+.iconfairy {
+    background-color: rgb(255, 192, 203);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;   
+    margin-bottom: 2px;
+
+}
+.iconpsychic {
+    background-color: rgb(224, 47, 224);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;  
+    margin-bottom: 2px;
+
+}
+.icondragon {
+    background-color: rgba(0, 0, 255, 0.603);
+    width: 40%;
+    height: 15%;
+    color: rgba(255, 255, 255, 0.801);
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;  
+    margin-bottom: 2px;
+
+}
