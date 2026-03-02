@@ -26,23 +26,21 @@ function Details() {
     // }, []);
 
     useEffect(() => {
-  async function fetchData() {
-    try {
-      // 1️⃣ Busca na PokeAPI
-      const pokemonResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-      const pokemon = pokemonResponse.data;
-      setData(pokemon);
-      // 2️⃣ Só depois usa o nome retornado
-      const wikiResponse = await axios.get(
-        `https://pt.wikipedia.org/api/rest_v1/page/summary/${pokemon.name}`
-      );
-      setDescriptions(wikiResponse.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  fetchData();
-}, []);
+      async function fetchData() {
+        try {
+
+          const pokemonResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/1`);
+          const pokemon = pokemonResponse.data;
+          setData(pokemon);
+
+          const wikiResponse = await axios.get(`https://pt.wikipedia.org/api/rest_v1/page/summary/${pokemon.name}`);
+          setDescriptions(wikiResponse.data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      fetchData();
+    }, []);
 
 
 
