@@ -62,6 +62,8 @@
     text-align: center;
     border-radius: 5px;   
     margin-bottom: 2px;
+    margin-left: .5%;
+    
 } 
 .iconwater {
     background-color: rgb(45, 196, 196);
@@ -149,7 +151,7 @@
     text-align: center;
     border-radius: 5px;   
     margin-bottom: 2px;
-
+    margin-left: .5%;
 }
 .iconground {
     background-color: rgb(210, 180, 140);
