@@ -69,3 +69,8 @@
 .abilities span {
     color: rgba(0, 0, 0, 0.753);
 }
+#my-chart {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}

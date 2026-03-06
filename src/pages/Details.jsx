@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import '../css/details.css'
 import '../css/type.css'
 
+
 function Details() {
 
     const navigate = useNavigate();
@@ -84,8 +85,13 @@ function Details() {
                               </div>
                             );
                           })}
-
                         </div>
+
+                        <div className="Base-Status-Container">    
+                          <p>{data?.stats[0].stat.name}</p>
+                          <p>{data?.stats[0].base_stat}</p>                       
+                        </div>
+                          
                 <button className="back-button" onClick={() => navigate('/')}>Back</button>
             </div>
         </div>
