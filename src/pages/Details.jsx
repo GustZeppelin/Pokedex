@@ -3,6 +3,7 @@ import { useSearchParams , useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import '../css/details.css'
 import '../css/type.css'
+import 'charts.css';
 
 
 function Details() {
@@ -87,9 +88,10 @@ function Details() {
                           })}
                         </div>
 
-                        <div className="Base-Status-Container">    
-                          <p>{data?.stats[0].stat.name}</p>
-                          <p>{data?.stats[0].base_stat}</p>                       
+                        <div className="my-chart">    
+
+                          <p>{data?.stats?.[0]?.stat?.name}</p>
+                          <p>{data?.stats?.[0]?.base_stat}</p>                       
                         </div>
                           
                 <button className="back-button" onClick={() => navigate('/')}>Back</button>
