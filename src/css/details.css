@@ -69,16 +69,25 @@
 .abilities span {
     color: rgba(0, 0, 0, 0.753);
 }
-
-
-#my-chart {
-  width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
+.table-container {
+    width: 50%;
+    height: 10rem;
+    /* background-color: rgb(40, 45, 58); */
+    /* display: flex; */
+    text-align: center;    
+    margin: auto;
+    margin-top: 7vh;
+    margin-bottom: 7vh;
+    border-radius: 30px;
 }
-#my-chart .bar {
-  
+.table-container table, th, td {
+    border-bottom: 1px solid;
+    padding: 10px;
 }
-#my-chart .legend {
-  
+.table-container h1 {
+    font-size: 4vh;
+}
+.table {
+    width: 90%;
+    margin: auto;
 }

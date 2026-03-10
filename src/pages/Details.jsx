@@ -88,10 +88,26 @@ function Details() {
                           })}
                         </div>
 
-                        <div className="my-chart">    
-
-                          <p>{data?.stats?.[0]?.stat?.name}</p>
-                          <p>{data?.stats?.[0]?.base_stat}</p>                       
+                        <div className="table-container">
+                          <h1>Base Stats</h1>   
+                          <table className="table">
+                            <tr>
+                              <th>HP</th>
+                              <th>ATTACK</th>
+                              <th>DEFENSE</th>
+                              <th>SPECIAL ATTACK</th>
+                              <th>SPECIAL DEFENSE</th>
+                              <th>SPEED</th>
+                            </tr>    
+                            <tr>
+                              <td>{data?.stats?.[0]?.base_stat}</td>
+                              <td>{data?.stats?.[1]?.base_stat}</td>
+                              <td>{data?.stats?.[2]?.base_stat}</td>
+                              <td>{data?.stats?.[3]?.base_stat}</td>
+                              <td>{data?.stats?.[4]?.base_stat}</td>
+                              <td>{data?.stats?.[5]?.base_stat}</td>
+                            </tr>                       
+                          </table>
                         </div>
                           
                 <button className="back-button" onClick={() => navigate('/')}>Back</button>
