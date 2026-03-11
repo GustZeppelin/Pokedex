@@ -16,39 +16,40 @@ function Details() {
     const [data, setData] = useState([]);
     const [descriptions, setDescriptions] = useState([]);
     const [abilities, setAbilities] = useState([]);
+    const [evolutions, setEvolutions] = useState([]);
+
+    async function dataPokemon() {
+      try {
+        const pokemonResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/`);
+        const pokemon = pokemonResponse.data;
+        setData(pokemon);
+        
+        const wikiResponse = await axios.get(`https://pt.wikipedia.org/api/rest_v1/page/summary/${pokemon.name}`);
+        setDescriptions(wikiResponse.data);
+
+        const abilityResponses = await Promise.all(
+          pokemon.abilities.map(res => axios.get(res.ability.url))
+        );
+        const abilitiesData = abilityResponses.map(res => res.data);
+        setAbilities(abilitiesData);
+
+        const evolutionResponse = await axios.get(`https://pokeapi.co/api/v2/evolution-chain/${pokemonId}`);
+        setEvolutions(evolutionResponse.data);
+
+
+      } catch (error) {
+        console.error(error);
+      }
+      
+    }
 
     useEffect(() => {
-      async function fetchData() {
-        try {
-
-          const pokemonResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/`);
-          const pokemon = pokemonResponse.data;
-          setData(pokemon);
-
-          const wikiResponse = await axios.get(`https://pt.wikipedia.org/api/rest_v1/page/summary/${pokemon.name}`);
-          setDescriptions(wikiResponse.data);
-
-          // const abilityResponse = await axios.get(pokemon.abilities[0].ability.url);
-          // setAbility(abilityResponse.data);      
-          
-          const abilityResponses = await Promise.all(
-            pokemon.abilities.map(a => axios.get(a.ability.url))
-          );
-
-          const abilitiesData = abilityResponses.map(res => res.data);
-
-          setAbilities(abilitiesData);
-
-        } catch (error) {
-          console.error(error);
-        }
-        }
-      fetchData();
+      dataPokemon();
     }, []);
 
 
 
-    console.log(data);
+    console.log(evolutions);
     return (
         <div className="details-container">
             <div className="poke-infos">
@@ -108,6 +109,12 @@ function Details() {
                               <td>{data?.stats?.[5]?.base_stat}</td>
                             </tr>                       
                           </table>
+                        </div>
+
+                        <div className="evolution-chart-container">
+                          <h1>{evolutions?.chain?.species.name}</h1>
+                          <h1>{evolutions?.chain?.evolves_to[0].species.name}</h1>
+                          <h1>{evolutions?.chain?.evolves_to[0].evolves_to[0].species.name}</h1>
                         </div>
                           
                 <button className="back-button" onClick={() => navigate('/')}>Back</button>
