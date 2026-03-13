@@ -23,6 +23,7 @@ function Details() {
         const pokemonResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/`);
         const pokemon = pokemonResponse.data;
         setData(pokemon);
+        getEvolutionChain(pokemon);
         
         const wikiResponse = await axios.get(`https://pt.wikipedia.org/api/rest_v1/page/summary/${pokemon.name}`);
         setDescriptions(wikiResponse.data);
@@ -33,14 +34,29 @@ function Details() {
         const abilitiesData = abilityResponses.map(res => res.data);
         setAbilities(abilitiesData);
 
-        const evolutionResponse = await axios.get(`https://pokeapi.co/api/v2/evolution-chain/${pokemonId}`);
-        setEvolutions(evolutionResponse.data);
-
-
       } catch (error) {
         console.error(error);
+      } 
+    }
+
+    async function getEvolutionChain(pokemon) {
+      try {
+        const speciesResponse = await axios.get(pokemon.species.url);
+        const evolution = await axios.get(speciesResponse.data.evolution_chain.url);
+        const firstFormResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/${evolution.data.chain.species.name}`);
+        const evolutions = [firstFormResponse.data]
+        if (evolution.data.chain.evolves_to.length === 1) {
+          const secondFormResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/${evolution.data.chain.evolves_to[0].species.name}`);
+          evolutions.push(secondFormResponse.data);
+        }
+        if (evolution.data.chain.evolves_to[0].evolves_to.length === 1) {
+          const thirdFormResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon/${evolution.data.chain.evolves_to[0].evolves_to[0].species.name}`);
+          evolutions.push(thirdFormResponse.data);
+        }
+        setEvolutions(evolutions)
+      } catch (error){
+        console.error(error);
       }
-      
     }
 
     useEffect(() => {
@@ -110,11 +126,17 @@ function Details() {
                             </tr>                       
                           </table>
                         </div>
-
                         <div className="evolution-chart-container">
-                          <h1>{evolutions?.chain?.species.name}</h1>
-                          <h1>{evolutions?.chain?.evolves_to[0].species.name}</h1>
-                          <h1>{evolutions?.chain?.evolves_to[0].evolves_to[0].species.name}</h1>
+                          <h1>Evolution Chart</h1>
+                          <div className="evolution-list">
+                            {evolutions.map((pokemon, index) => (
+                            <div className="evo-card" key={index}>
+                              <img className="img-evo" src={pokemon.sprites.other?.['official-artwork']?.front_default} alt={pokemon.name} />
+                              <h1>{pokemon.name}</h1>                                
+                            </div>
+                          ))}
+                          </div>
+                          
                         </div>
                           
                 <button className="back-button" onClick={() => navigate('/')}>Back</button>

@@ -20,13 +20,7 @@ function PokeList(props) {
     <div>
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-4xl font-bold text-center mt-5 mb-5">Pokedex</h1>
-        <input 
-      type="text"   
-      value={props.search}
-      onChange={(e) => props.setSearch(e.target.value)}
-      placeholder="Search Pokemon"
-      className="border"
-      />
+        <input type="text" value={props.search} onChange={(e) => props.setSearch(e.target.value)} placeholder="Search Pokemon" className="border"/>
       </div>
 
       
