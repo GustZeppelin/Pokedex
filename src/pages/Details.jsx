@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useSearchParams , useNavigate } from "react-router-dom";
+import { useSearchParams , useNavigate, useFetcher } from "react-router-dom";
 import { useEffect, useState } from "react";
 import '../css/details.css'
 import '../css/type.css'
@@ -17,6 +17,7 @@ function Details() {
     const [descriptions, setDescriptions] = useState([]);
     const [abilities, setAbilities] = useState([]);
     const [evolutions, setEvolutions] = useState([]);
+    const [moves, setMoves] = useState([]);
 
     async function dataPokemon() {
       try {
@@ -24,7 +25,9 @@ function Details() {
         const pokemon = pokemonResponse.data;
         setData(pokemon);
         getEvolutionChain(pokemon);
-        
+        const moves = getDetailedMoves(pokemon).then();
+        setMoves(moves);
+
         const wikiResponse = await axios.get(`https://pt.wikipedia.org/api/rest_v1/page/summary/${pokemon.name}`);
         setDescriptions(wikiResponse.data);
 
@@ -54,18 +57,49 @@ function Details() {
           evolutions.push(thirdFormResponse.data);
         }
         setEvolutions(evolutions)
+
       } catch (error){
         console.error(error);
       }
     }
 
+
+    async function getMoves(pokemon) {
+      const moves = pokemon?.moves?.map(moveInfo => ({
+        name: moveInfo.move.name, 
+        url: moveInfo.move.url
+      }));
+      return moves;
+    } 
+
+    async function getDetailedMoves(pokemonName) {
+      const moves = await getMoves(pokemonName);
+
+      if (!moves) return null;
+
+      const detailedMoves = await Promise.all(
+        moves.map(async (move) => {
+          const res = await fetch(move.url);
+          const moveData = await res.json();
+
+          return{
+            name: move.name,
+            power: moveData.power,
+            accuracy: moveData.accuracy,
+            type: moveData.type.name
+          };
+        })
+      );
+        return detailedMoves;
+    };
+    
+  console.log(moves)
+
     useEffect(() => {
       dataPokemon();
+      window.scrollTo(0, 0);
     }, []);
 
-
-
-    console.log(evolutions);
     return (
         <div className="details-container">
             <div className="poke-infos">
@@ -135,9 +169,42 @@ function Details() {
                               <h1>{pokemon.name}</h1>                                
                             </div>
                           ))}
-                          </div>
-                          
+                          </div>                  
                         </div>
+                          <div className="moves-list-container">
+                            {/* <h1>Moves learned by {data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h1> */}
+                            <div className="moves-lvl">
+                              <table>
+                                <caption>
+                                  Moves Learnt by level up
+                                </caption>
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Lv</th>
+                                    <th scope="col">Move</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Cat.</th>
+                                    <th scope="col">Power</th>
+                                    <th scope="col">Acc.</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    {/* {moves.map((move) => (
+                                      <tr key={move.name}>
+                                        <td>{move.level}</td>
+                                        <td>{moveData.type}</td>
+                                        <td>{move.category}</td>
+                                        <td>{move.power ?? "-"}</td>
+                                        <td>{move.accuracy ?? "-"}</td>
+                                      </tr>
+                                    ))} */}
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                    
                           
                 <button className="back-button" onClick={() => navigate('/')}>Back</button>
             </div>
