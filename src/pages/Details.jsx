@@ -12,7 +12,6 @@ function Details() {
     const [searchParams] = useSearchParams();
     const pokemonId = searchParams.get('id');
 
-
     const [data, setData] = useState([]);
     const [descriptions, setDescriptions] = useState([]);
     const [abilities, setAbilities] = useState([]);
@@ -25,8 +24,7 @@ function Details() {
         const pokemon = pokemonResponse.data;
         setData(pokemon);
         getEvolutionChain(pokemon);
-        const moves = getDetailedMoves(pokemon).then();
-        setMoves(moves);
+        getMoves(pokemon);
 
         const wikiResponse = await axios.get(`https://pt.wikipedia.org/api/rest_v1/page/summary/${pokemon.name}`);
         setDescriptions(wikiResponse.data);
@@ -69,37 +67,19 @@ function Details() {
         name: moveInfo.move.name, 
         url: moveInfo.move.url
       }));
-      return moves;
+      return getDetailedMoves(moves);
     } 
 
-    async function getDetailedMoves(pokemonName) {
-      const moves = await getMoves(pokemonName);
-
-      if (!moves) return null;
-
-      const detailedMoves = await Promise.all(
-        moves.map(async (move) => {
-          const res = await fetch(move.url);
-          const moveData = await res.json();
-
-          return{
-            name: move.name,
-            power: moveData.power,
-            accuracy: moveData.accuracy,
-            type: moveData.type.name
-          };
-        })
-      );
-        return detailedMoves;
-    };
-    
-  console.log(moves)
+    async function getDetailedMoves(moves) {
+      const moveResponse = await axios.all(moves.map((move) => axios.get(move.url)));
+      setMoves(moveResponse);
+    }
 
     useEffect(() => {
       dataPokemon();
       window.scrollTo(0, 0);
     }, []);
-
+console.log(moves);
     return (
         <div className="details-container">
             <div className="poke-infos">
@@ -180,7 +160,6 @@ function Details() {
                                 </caption>
                                 <thead>
                                   <tr>
-                                    <th scope="col">Lv</th>
                                     <th scope="col">Move</th>
                                     <th scope="col">Type</th>
                                     <th scope="col">Cat.</th>
@@ -189,17 +168,16 @@ function Details() {
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    {/* {moves.map((move) => (
-                                      <tr key={move.name}>
-                                        <td>{move.level}</td>
-                                        <td>{moveData.type}</td>
-                                        <td>{move.category}</td>
-                                        <td>{move.power ?? "-"}</td>
-                                        <td>{move.accuracy ?? "-"}</td>
-                                      </tr>
-                                    ))} */}
-                                  </tr>
+                                  {moves.map((move) => (
+                                    <tr>
+                                      {/* colocar o nivel que aprende a habildiade e filtrar apenas as que são aprendidas por nivel */}
+                                      <td>{move.data.name.charAt(0).toUpperCase() + move.data.name.slice(1)}</td> 
+                                      <td>{move.data.type.name}</td>    
+                                      <td>{move.data.damage_class.name}</td>
+                                      <td>{move.data.power ?? "-"}</td>
+                                      <td>{move.data.accuracy ?? "-"}</td>
+                                    </tr>
+                                  ))}                                                           
                                 </tbody>
                               </table>
                             </div>
