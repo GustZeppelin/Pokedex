@@ -152,11 +152,10 @@ console.log(moves);
                           </div>                  
                         </div>
                           <div className="moves-list-container">
-                            {/* <h1>Moves learned by {data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h1> */}
                             <div className="moves-lvl">
                               <table>
                                 <caption>
-                                  Moves Learnt by level up
+                                  Moves learned by {data?.name?.charAt(0).toUpperCase() + data?.name?.slice(1)}
                                 </caption>
                                 <thead>
                                   <tr>
@@ -172,8 +171,8 @@ console.log(moves);
                                     <tr>
                                       {/* colocar o nivel que aprende a habildiade e filtrar apenas as que são aprendidas por nivel */}
                                       <td>{move.data.name.charAt(0).toUpperCase() + move.data.name.slice(1)}</td> 
-                                      <td>{move.data.type.name}</td>    
-                                      <td>{move.data.damage_class.name}</td>
+                                      <td>{move.data.type.name.charAt(0).toUpperCase() + move.data.type.name.slice(1)}</td>    
+                                      <td>{move.data.damage_class.name.charAt(0).toUpperCase() + move.data.damage_class.name.slice(1)}</td>
                                       <td>{move.data.power ?? "-"}</td>
                                       <td>{move.data.accuracy ?? "-"}</td>
                                     </tr>

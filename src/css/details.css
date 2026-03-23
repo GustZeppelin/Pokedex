@@ -116,3 +116,16 @@
     height: 100%;
 }
 
+.moves-lvl {
+    width: 40%;
+    /* background-color: aqua; */
+}
+
+.moves-lvl table {
+    width: 100%;
+    background: #ffffff;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(161, 161, 161, 0.96) 100%);
+    margin-left: 4rem;
+    text-align: center;
+
+}
