@@ -79,7 +79,7 @@ function Details() {
       dataPokemon();
       window.scrollTo(0, 0);
     }, []);
-console.log(moves);
+console.log(data);
     return (
         <div className="details-container">
             <div className="poke-infos">
@@ -155,7 +155,7 @@ console.log(moves);
                             <div className="moves-lvl">
                               <table>
                                 <caption>
-                                  Moves learned by {data?.name?.charAt(0).toUpperCase() + data?.name?.slice(1)}
+                                  <h1>Moves learned by {data?.name?.charAt(0).toUpperCase() + data?.name?.slice(1)}</h1>
                                 </caption>
                                 <thead>
                                   <tr>
@@ -167,7 +167,7 @@ console.log(moves);
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {moves.map((move) => (
+                                  {moves.map((move) => (                           
                                     <tr>
                                       {/* colocar o nivel que aprende a habildiade e filtrar apenas as que são aprendidas por nivel */}
                                       <td>{move.data.name.charAt(0).toUpperCase() + move.data.name.slice(1)}</td> 

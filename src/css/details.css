@@ -118,7 +118,12 @@
 
 .moves-lvl {
     width: 40%;
-    /* background-color: aqua; */
+    margin: auto;
+    margin-top: 5vh;
+}
+
+.moves-lvl h1 {
+    font-size: 4vh;
 }
 
 .moves-lvl table {
